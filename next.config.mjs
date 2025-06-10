@@ -7,7 +7,6 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   output: 'export',
-  basePath: '/jaineel-website',
   images: {
     unoptimized: true,
   },
