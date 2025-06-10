@@ -316,18 +316,16 @@ export default function Portfolio() {
               Explore My Work
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button
-              as="a"
+            <a
               href="/resume.pdf"
-              variant="outline"
-              size="lg"
-              className="border-gray-300 hover:bg-gray-50 text-gray-900 rounded-full px-8 py-3 font-medium"
+              download="Jaineel_Modi_Resume.pdf"
+              className="inline-flex items-center justify-center border border-gray-300 hover:bg-gray-50 text-gray-900 rounded-full px-8 py-3 font-medium transition-colors"
               onMouseEnter={enterButton}
               onMouseLeave={leaveButton}
             >
               <Download className="mr-2 h-4 w-4" />
               Download Resume
-            </Button>
+            </a>
           </motion.div>
 
           <motion.div
