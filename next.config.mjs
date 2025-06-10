@@ -11,7 +11,8 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
-  assetPrefix: '.',
+  assetPrefix: '',
+  basePath: '',
 }
 
 export default nextConfig
