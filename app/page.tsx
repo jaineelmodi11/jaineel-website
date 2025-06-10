@@ -62,7 +62,7 @@ export default function Portfolio() {
 
       const current = sections.find((section) => {
         if (section.ref.current) {
-          const rect = section.ref.current.getBoundingClientRect()
+          const rect = (section.ref.current as HTMLElement).getBoundingClientRect()
           return rect.top <= 100 && rect.bottom >= 100
         }
         return false
@@ -71,7 +71,7 @@ export default function Portfolio() {
       if (current) setActiveSection(current.id)
     }
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
 
@@ -84,7 +84,7 @@ export default function Portfolio() {
     }
   }, [])
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
   }
 
@@ -96,42 +96,42 @@ export default function Portfolio() {
   const skills = [
     // Languages
     { name: "Python", level: 98, category: "Languages", color: "#007AFF" },
-    { name: "Java", level: 92, category: "Languages", color: "#5856D6" },
-    { name: "C++", level: 85, category: "Languages", color: "#FF3B30" },
-    { name: "C#", level: 82, category: "Languages", color: "#34C759" },
-    { name: "TypeScript", level: 90, category: "Languages", color: "#5856D6" },
+    { name: "Java", level: 92, category: "Languages", color: "#007AFF" },
+    { name: "C++", level: 85, category: "Languages", color: "#007AFF" },
+    { name: "C#", level: 82, category: "Languages", color: "#007AFF" },
+    { name: "TypeScript", level: 90, category: "Languages", color: "#007AFF" },
     { name: "JavaScript", level: 95, category: "Languages", color: "#007AFF" },
-    { name: "SQL", level: 85, category: "Languages", color: "#FF3B30" },
-    { name: "Swift", level: 78, category: "Languages", color: "#FF9500" },
+    { name: "SQL", level: 85, category: "Languages", color: "#007AFF" },
+    { name: "Swift", level: 78, category: "Languages", color: "#007AFF" },
     // Frontend / UI
-    { name: "React", level: 92, category: "Frontend", color: "#FF9500" },
-    { name: "Next.js", level: 85, category: "Frontend", color: "#FF3B30" },
-    { name: "Tailwind CSS", level: 94, category: "Frontend", color: "#007AFF" },
-    { name: "Material-UI", level: 88, category: "Frontend", color: "#5856D6" },
-    { name: "Flutter", level: 82, category: "Frontend", color: "#007AFF" },
-    { name: "Expo", level: 78, category: "Frontend", color: "#5856D6" },
+    { name: "React", level: 92, category: "Frontend", color: "#34C759" },
+    { name: "Next.js", level: 85, category: "Frontend", color: "#34C759" },
+    { name: "Tailwind CSS", level: 94, category: "Frontend", color: "#34C759" },
+    { name: "Material-UI", level: 88, category: "Frontend", color: "#34C759" },
+    { name: "Flutter", level: 82, category: "Frontend", color: "#34C759" },
+    { name: "Expo", level: 78, category: "Frontend", color: "#34C759" },
     // Backend
     { name: "Node.js", level: 93, category: "Backend", color: "#FF9500" },
-    { name: "Express.js", level: 90, category: "Backend", color: "#FF3B30" },
-    { name: "Flask", level: 88, category: "Backend", color: "#34C759" },
-    { name: "FastAPI", level: 85, category: "Backend", color: "#007AFF" },
-    { name: ".NET Core", level: 82, category: "Backend", color: "#5856D6" },
-    { name: "TensorFlow", level: 92, category: "AI/ML", color: "#FF3B30" },
-    { name: "PyTorch", level: 88, category: "AI/ML", color: "#34C759" },
-    { name: "Scikit-learn", level: 90, category: "AI/ML", color: "#007AFF" },
+    { name: "Express.js", level: 90, category: "Backend", color: "#FF9500" },
+    { name: "Flask", level: 88, category: "Backend", color: "#FF9500" },
+    { name: "FastAPI", level: 85, category: "Backend", color: "#FF9500" },
+    { name: ".NET Core", level: 82, category: "Backend", color: "#FF9500" },
+    { name: "TensorFlow", level: 92, category: "AI/ML", color: "#5856D6" },
+    { name: "PyTorch", level: 88, category: "AI/ML", color: "#5856D6" },
+    { name: "Scikit-learn", level: 90, category: "AI/ML", color: "#5856D6" },
     { name: "Pandas", level: 95, category: "AI/ML", color: "#5856D6" },
-    { name: "NumPy", level: 94, category: "AI/ML", color: "#FF9500" },
-    { name: "KNN", level: 85, category: "AI/ML", color: "#FF3B30" },
-    { name: "Vision Models", level: 82, category: "AI/ML", color: "#34C759" },
+    { name: "NumPy", level: 94, category: "AI/ML", color: "#5856D6" },
+    { name: "KNN", level: 85, category: "AI/ML", color: "#5856D6" },
+    { name: "Vision Models", level: 82, category: "AI/ML", color: "#5856D6" },
     // Database / DevOps
-    { name: "MySQL", level: 90, category: "Database/DevOps", color: "#5856D6" },
+    { name: "MySQL", level: 90, category: "Database/DevOps", color: "#FF3B30" },
     { name: "PostgreSQL", level: 85, category: "Database/DevOps", color: "#FF3B30" },
-    { name: "MongoDB", level: 88, category: "Database/DevOps", color: "#FF9500" },
-    { name: "Docker", level: 82, category: "Database/DevOps", color: "#34C759" },
-    { name: "GitHub", level: 95, category: "Database/DevOps", color: "#007AFF" },
-    { name: "RecSend CLI", level: 87, category: "Database/DevOps", color: "#5856D6" },
+    { name: "MongoDB", level: 88, category: "Database/DevOps", color: "#FF3B30" },
+    { name: "Docker", level: 82, category: "Database/DevOps", color: "#FF3B30" },
+    { name: "GitHub", level: 95, category: "Database/DevOps", color: "#FF3B30" },
+    { name: "RecSend CLI", level: 87, category: "Database/DevOps", color: "#FF3B30" },
     { name: "Microsoft Azure", level: 85, category: "Database/DevOps", color: "#FF3B30" },
-    { name: "AWS", level: 85, category: "Database/DevOps", color: "#FF9500" },
+    { name: "AWS", level: 85, category: "Database/DevOps", color: "#FF3B30" },
   ]
 
   // Projects array updated to reflect resume details
@@ -162,7 +162,7 @@ export default function Portfolio() {
       title: "TOSSIT (Waste Identification App)",
       description:
         "A ML-driven application that identifies waste from photos, enhances recycling outcomes, and provides users with waste-tracking insights.",
-      image: "/projects/tossit.png",
+      image: "/projects/Tossit.png",
       technologies: ["React", "React Native", "Expo", "TensorFlow", "Node.js", "Express"],
       github: "https://github.com/jaineelmodi11/Tossit/tree/main/tossit-master",
       live: "https://user-images.githubusercontent.com/67121244/167263145-62d1ecbb-d913-4aa8-85a0-bc55cf39aa13.mp4",

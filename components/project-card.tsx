@@ -33,7 +33,8 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       <motion.div
         className="w-full md:w-1/2"
         whileHover={{ scale: 1.02 }}
-        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        transition={{ duration: 0.2 }}
+        style={{ willChange: 'transform' }}
       >
         <div className="relative group">
           <div
