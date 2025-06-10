@@ -30,6 +30,13 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Clean up
+        run: |
+          cd out
+          rm -rf node_modules
+          rm -f next-env.d.ts
+          touch .nojekyll
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
