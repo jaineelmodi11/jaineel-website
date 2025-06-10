@@ -31,6 +31,7 @@ import ProjectCard from "@/components/project-card"
 import SkillOrb from "@/components/skill-orb"
 import ExperienceTimeline from "@/components/experience-timeline"
 
+// This comment is added to trigger a new deployment
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("hero")
   const [isScrolled, setIsScrolled] = useState(false)
