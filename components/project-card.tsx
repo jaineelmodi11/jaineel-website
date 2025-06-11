@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Github, ExternalLink } from "lucide-react"
+import Image from 'next/image'
 
 interface ProjectCardProps {
   project: {
@@ -42,7 +43,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             style={{ background: `linear-gradient(45deg, ${project.color}, #007AFF)` }}
           />
           <div className="relative aspect-video overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-2xl">
-            <img src={project.image || "/placeholder.svg"} alt={project.title} className="w-full h-full object-cover" />
+            <Image src={project.image} alt={project.title} fill className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
               <div className="p-6 w-full">
                 <div className="flex justify-between items-center">
