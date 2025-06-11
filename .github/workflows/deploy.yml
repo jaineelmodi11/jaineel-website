@@ -36,6 +36,8 @@ jobs:
           rm -rf node_modules
           rm -f next-env.d.ts
           touch .nojekyll
+          # Add cache control headers
+          find . -type f -name "*.html" -exec sed -i 's/<head>/<head>\n<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">\n<meta http-equiv="Pragma" content="no-cache">\n<meta http-equiv="Expires" content="0">/g' {} \;
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
