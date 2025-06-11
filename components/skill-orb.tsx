@@ -24,9 +24,9 @@ const SkillOrb = ({ skills }: SkillOrbProps) => {
   useEffect(() => {
     if (dimensions.width === 0 || dimensions.height === 0 || positionsRef.current.length > 0) return
 
-    const minDistance = 80
-    const padding = 40
-    const maxAttempts = 100
+    const minDistance = 90
+    const padding = 50
+    const maxAttempts = 150
     const newPositions: { x: number; y: number }[] = []
 
     skills.forEach((_, index) => {
@@ -65,13 +65,13 @@ const SkillOrb = ({ skills }: SkillOrbProps) => {
   }, [])
 
   return (
-    <div ref={containerRef} className="w-full h-full relative">
+    <div ref={containerRef} className="w-full h-full relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-50/50 to-purple-50/50">
       {dimensions.width > 0 &&
         skills.map((skill, index) => {
           const position = positionsRef.current[index]
           const isHovered = hoveredSkill === skill.name
-          const orbSize = 65 + skill.level * 0.3
-          const scale = 0.6 + (skill.level / 100) * 0.3
+          const orbSize = 70 + skill.level * 0.4
+          const scale = 0.7 + (skill.level / 100) * 0.4
 
           if (!position) return null
 
@@ -92,10 +92,10 @@ const SkillOrb = ({ skills }: SkillOrbProps) => {
               }}
               transition={{
                 type: "spring",
-                stiffness: 100,
-                damping: 20,
-                delay: index * 0.05,
-                duration: 0.5
+                stiffness: 80,
+                damping: 25,
+                delay: index * 0.03,
+                duration: 0.8
               }}
               style={{ 
                 position: 'absolute',
@@ -105,36 +105,67 @@ const SkillOrb = ({ skills }: SkillOrbProps) => {
               }}
               onMouseEnter={() => setHoveredSkill(skill.name)}
               onMouseLeave={() => setHoveredSkill(null)}
+              whileHover={{ scale: scale * 1.1 }}
             >
-              <div
-                className={`rounded-full flex items-center justify-center ${
-                  isHovered ? "shadow-lg shadow-gray-400/20" : ""
+              <motion.div
+                className={`rounded-full flex items-center justify-center relative overflow-hidden ${
+                  isHovered ? "shadow-2xl" : "shadow-lg"
                 }`}
                 style={{
-                  background: isHovered ? `linear-gradient(135deg, ${skill.color}, #D1D5DB)` : skill.color,
+                  background: isHovered 
+                    ? `linear-gradient(135deg, ${skill.color}, #ffffff)` 
+                    : skill.color,
                   width: `${orbSize}px`,
                   height: `${orbSize}px`,
-                  opacity: isHovered ? 1 : 0.85,
-                  padding: "8px",
+                  opacity: isHovered ? 1 : 0.9,
+                  padding: "10px",
+                }}
+                animate={{
+                  boxShadow: isHovered 
+                    ? `0 20px 40px ${skill.color}40` 
+                    : `0 10px 20px ${skill.color}20`
                 }}
               >
-                <div className="flex flex-col items-center justify-center text-center">
+                {/* Glow effect */}
+                <div 
+                  className="absolute inset-0 rounded-full opacity-30 blur-sm"
+                  style={{ backgroundColor: skill.color }}
+                />
+                
+                {/* Content */}
+                <div className="flex flex-col items-center justify-center text-center relative z-10">
                   <span 
-                    className="text-[12px] font-medium text-gray-900 leading-tight"
+                    className="text-white font-bold leading-tight drop-shadow-lg"
                     style={{
-                      maxWidth: `${orbSize - 16}px`,
+                      fontSize: `${Math.max(10, orbSize / 6)}px`,
+                      maxWidth: `${orbSize - 20}px`,
                       wordBreak: "break-word",
+                      textShadow: "0 2px 4px rgba(0,0,0,0.3)"
                     }}
                   >
                     {skill.name}
                   </span>
                   {isHovered && (
-                    <span className="text-[10px] text-gray-700 mt-1 font-medium">
-                      {skill.level}%
-                    </span>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="mt-1"
+                    >
+                      <span className="text-white/90 font-semibold text-xs drop-shadow-lg">
+                        {skill.level}%
+                      </span>
+                      <div className="w-8 h-1 bg-white/30 rounded-full mt-1 overflow-hidden">
+                        <motion.div 
+                          className="h-full bg-white rounded-full"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${skill.level}%` }}
+                          transition={{ duration: 0.5, delay: 0.2 }}
+                        />
+                      </div>
+                    </motion.div>
                   )}
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           )
         })}
