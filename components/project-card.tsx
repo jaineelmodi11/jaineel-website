@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Github, ExternalLink } from "lucide-react"
 import Image from 'next/image'
+import { useState } from 'react'
 
 interface ProjectCardProps {
   project: {
@@ -21,6 +22,7 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project, index }: ProjectCardProps) => {
+  const [imageError, setImageError] = useState(false)
   const isEven = index % 2 === 0
 
   return (
@@ -43,7 +45,20 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             style={{ background: `linear-gradient(45deg, ${project.color}, #007AFF)` }}
           />
           <div className="relative aspect-video overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-2xl">
-            <Image src={project.image} alt={project.title} fill className="object-cover" />
+            {!imageError ? (
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover"
+                onError={() => setImageError(true)}
+                priority={index === 0}
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                <span className="text-gray-400">Image not available</span>
+              </div>
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
               <div className="p-6 w-full">
                 <div className="flex justify-between items-center">
