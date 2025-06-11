@@ -141,7 +141,7 @@ export default function Portfolio() {
       title: "MovieMatchApp",
       description:
         "An iOS swipe-based movie recommendation app that learns user preferences from swipe actions and delivers tailored film suggestions..",
-      image: "/Projects/moviematch.png",
+      image: "https://placehold.co/800x450/007AFF/FFFFFF/png?text=MovieMatch+App",
       technologies: ["Swift", "SwiftUI", "Firebase", "Flask", "PostgreSQL"],
       github: "https://github.com/jaineelmodi11/MovieMatchApp",
       live: "https://github.com/user-attachments/assets/cd57a3d8-373b-4e89-afb9-21fd22350006",
@@ -152,7 +152,7 @@ export default function Portfolio() {
       title: "RecSend CLI",
       description:
         "A command-line tool that automates end-to-end API testing with YAML-defined suites forrapid backend validation and seamless CI integration.",
-      image: "/Projects/recsend.png",
+      image: "https://placehold.co/800x450/34C759/FFFFFF/png?text=RecSend+CLI",
       technologies: ["Python", "Click"],
       github: "https://github.com/jaineelmodi11/recsend-developer-focused-CLI",
       live: "https://github.com/jaineelmodi11/recsend-developer-focused-CLI",
@@ -163,7 +163,7 @@ export default function Portfolio() {
       title: "TOSSIT (Waste Identification App)",
       description:
         "A ML-driven application that identifies waste from photos, enhances recycling outcomes, and provides users with waste-tracking insights.",
-      image: "/Projects/Tossit.png",
+      image: "https://placehold.co/800x450/FF9500/FFFFFF/png?text=TOSSIT+App",
       technologies: ["React", "React Native", "Expo", "TensorFlow", "Node.js", "Express"],
       github: "https://github.com/jaineelmodi11/Tossit/tree/main/tossit-master",
       live: "https://user-images.githubusercontent.com/67121244/167263145-62d1ecbb-d913-4aa8-85a0-bc55cf39aa13.mp4",

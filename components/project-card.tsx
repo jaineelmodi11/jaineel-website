@@ -23,6 +23,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project, index }: ProjectCardProps) => {
   const [imageError, setImageError] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const isEven = index % 2 === 0
 
   return (
@@ -45,14 +46,21 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             style={{ background: `linear-gradient(45deg, ${project.color}, #007AFF)` }}
           />
           <div className="relative aspect-video overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-2xl">
+            {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+                <div className="w-8 h-8 border-4 border-gray-300 border-t-blue-600 rounded-full animate-spin"></div>
+              </div>
+            )}
             {!imageError ? (
               <Image
                 src={project.image}
                 alt={project.title}
                 fill
-                className="object-cover"
+                className={`object-cover transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
                 onError={() => setImageError(true)}
+                onLoad={() => setIsLoading(false)}
                 priority={index === 0}
+                unoptimized
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center bg-gray-100">
