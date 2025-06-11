@@ -13,6 +13,13 @@ const nextConfig = {
   trailingSlash: true,
   assetPrefix: '',
   basePath: '',
+  // Disable static optimization for better caching
+  staticPageGenerationTimeout: 120,
+  experimental: {
+    // This ensures proper static generation
+    optimizeCss: true,
+    optimizeImages: true,
+  },
   // Add cache control headers
   async headers() {
     return [

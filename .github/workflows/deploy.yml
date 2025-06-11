@@ -30,14 +30,16 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Clean up
+      - name: Clean up and add version
         run: |
           cd out
           rm -rf node_modules
           rm -f next-env.d.ts
           touch .nojekyll
-          # Add cache control headers
-          find . -type f -name "*.html" -exec sed -i 's/<head>/<head>\n<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">\n<meta http-equiv="Pragma" content="no-cache">\n<meta http-equiv="Expires" content="0">/g' {} \;
+          # Add version to all asset URLs
+          VERSION=$(date +%s)
+          find . -type f -name "*.html" -exec sed -i "s/\(src\|href\)=['\"]\(\/[^'\"]*\)['\"]/\1='\2?v=$VERSION'/g" {} \;
+          find . -type f -name "*.html" -exec sed -i "s/\(src\|href\)=['\"]\(\/[^'\"]*\.\(js\|css\|png\|jpg\|jpeg\|gif\|svg\)\)['\"]/\1='\2?v=$VERSION'/g" {} \;
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
